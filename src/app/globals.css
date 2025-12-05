@@ -5,90 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ================================================== */
-/* CSS VARIABLES & THEME CONFIGURATION - HERBAL EDITION */
-/* ================================================== */
-
-/* ---------------------------------------------------- */
-/* 1. Base Dark Mode Variables (Default) - Pure Herbal */
-/* ---------------------------------------------------- */
-:root {
-  /* Background Colors - Deep Nature Inspired */
-  --bg-primary: #0f172a;           /* Deep Navy Blue */
-  --bg-secondary: #1e293b;         /* Slate 800 */
-  --bg-card: #1e293b;              /* Card Background */
-  --bg-card-hover: #334155;        /* Card Hover */
-  
-  /* Text Colors */
-  --color-text-primary: #f1f5f9;   /* Light Slate */
-  --color-text-secondary: #94a3b8; /* Slate 400 */
-  
-  /* Herbal Greens - Nature Inspired */
-  --color-accent-primary: #10b981;       /* Emerald 500 - Main Brand */
-  --color-accent-secondary: #059669;     /* Emerald 600 - Darker */
-  --color-accent-light: #34d399;         /* Emerald 400 - Lighter */
-  --color-accent-muted: #065f46;         /* Emerald 800 - Muted */
-  
-  /* Neutral Accents */
-  --color-neutral-light: #f8fafc;        /* Slate 50 */
-  --color-neutral-dark: #0f172a;         /* Slate 900 */
-  
-  /* UI Colors */
-  --color-header-bg: #1e293b;            /* Slate 800 */
-  --color-border: #334155;               /* Slate 700 */
-  --color-ring: rgba(16, 185, 129, 0.5); /* Emerald with opacity */
-  
-  /* Opacity Colors */
-  --color-accent-20: rgba(16, 185, 129, 0.2);
-  --color-accent-10: rgba(16, 185, 129, 0.1);
-  --color-accent-5: rgba(16, 185, 129, 0.05);
-  
-  /* Radius */
-  --radius: 0.75rem;
-}
-
-/* ---------------------------------------------------- */
-/* 2. Light Mode Variables - Clean & Natural */
-/* ---------------------------------------------------- */
-.light-mode {
-  /* Background Colors - Clean & Bright */
-  --bg-primary: #ffffff;           /* Pure White */
-  --bg-secondary: #f8fafc;         /* Slate 50 */
-  --bg-card: #ffffff;              /* Card Background */
-  --bg-card-hover: #f1f5f9;        /* Slate 100 */
-  
-  /* Text Colors */
-  --color-text-primary: #0f172a;   /* Slate 900 */
-  --color-text-secondary: #64748b; /* Slate 500 */
-  
-  /* Herbal Greens - Slightly Darker for Light Mode */
-  --color-accent-primary: #059669;       /* Emerald 600 */
-  --color-accent-secondary: #047857;     /* Emerald 700 */
-  --color-accent-light: #10b981;         /* Emerald 500 */
-  --color-accent-muted: #a7f3d0;         /* Emerald 200 */
-  
-  /* Neutral Accents */
-  --color-neutral-light: #ffffff;
-  --color-neutral-dark: #0f172a;
-  
-  /* UI Colors */
-  --color-header-bg: #ffffff;
-  --color-border: #e2e8f0;               /* Slate 200 */
-  --color-ring: rgba(5, 150, 105, 0.5);
-  
-  /* Opacity Colors */
-  --color-accent-20: rgba(5, 150, 105, 0.2);
-  --color-accent-10: rgba(5, 150, 105, 0.1);
-  --color-accent-5: rgba(5, 150, 105, 0.05);
-}
-
-/* ================================================== */
-/* BASE STYLES */
-/* ================================================== */
-
 @layer base {
   * {
-    border-color: var(--color-border);
+    @apply border-border;
     box-sizing: border-box;
   }
   
@@ -98,361 +17,105 @@
   
   body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--color-text-primary);
-    min-height: 100vh;
-    transition: all 0.3s ease-in-out;
+    @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300;
   }
 }
-
-/* ================================================== */
-/* UTILITY CLASSES */
-/* ================================================== */
-
-@layer utilities {
-  /* Background Utilities */
-  .bg-natural-primary { background-color: var(--bg-primary); }
-  .bg-natural-secondary { background-color: var(--bg-secondary); }
-  .bg-natural-card { background-color: var(--bg-card); }
-  .bg-natural-header { background-color: var(--color-header-bg); }
-  
-  /* Accent Backgrounds */
-  .bg-accent-primary { background-color: var(--color-accent-primary); }
-  .bg-accent-secondary { background-color: var(--color-accent-secondary); }
-  .bg-accent-light { background-color: var(--color-accent-light); }
-  .bg-accent-muted { background-color: var(--color-accent-muted); }
-  
-  /* Opacity Backgrounds */
-  .bg-accent-20 { background-color: var(--color-accent-20); }
-  .bg-accent-10 { background-color: var(--color-accent-10); }
-  .bg-accent-5 { background-color: var(--color-accent-5); }
-  
-  /* Text Colors */
-  .text-natural-primary { color: var(--color-text-primary); }
-  .text-natural-secondary { color: var(--color-text-secondary); }
-  
-  /* Accent Text */
-  .text-accent-primary { color: var(--color-accent-primary); }
-  .text-accent-secondary { color: var(--color-accent-secondary); }
-  .text-accent-light { color: var(--color-accent-light); }
-  
-  /* Neutral Text */
-  .text-neutral-light { color: var(--color-neutral-light); }
-  .text-neutral-dark { color: var(--color-neutral-dark); }
-  
-  /* Borders */
-  .border-natural { border-color: var(--color-border); }
-  .border-accent { border-color: var(--color-accent-primary); }
-  
-  /* Transitions */
-  .transition-natural {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-}
-
-/* ================================================== */
-/* COMPONENT CLASSES */
-/* ================================================== */
 
 @layer components {
   /* Container */
   .container-natural {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 80rem; /* 7xl = 80rem */
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
   
-  @media (min-width: 640px) {
-    .container-natural {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .container-natural {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-  
-  /* Button Styles */
-  .btn-natural-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s;
-    background-color: var(--color-accent-primary);
-    color: white;
-  }
-  
-  .btn-natural-primary:hover {
-    background-color: var(--color-accent-secondary);
-    transform: scale(1.05);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .btn-natural-outline {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border: 2px solid var(--color-accent-primary);
-    color: var(--color-accent-primary);
-    transition: all 0.3s;
-  }
-  
-  .btn-natural-outline:hover {
-    background-color: var(--color-accent-primary);
-    color: white;
-  }
-  
-  .btn-natural-light {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s;
-    background-color: var(--color-accent-20);
-    color: var(--color-accent-primary);
-  }
-  
-  .btn-natural-light:hover {
-    background-color: var(--color-accent-10);
-    transform: scale(1.05);
-  }
-  
-  /* Card Styles */
-  .card-natural {
-    border-radius: 1rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
-    background-color: var(--bg-card);
-    border: 1px solid var(--color-border);
-  }
-  
-  .card-natural-hover {
-    border-radius: 1rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
-    background-color: var(--bg-card);
-    border: 1px solid var(--color-border);
-  }
-  
-  .card-natural-hover:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    transform: translateY(-0.25rem);
-    border-color: var(--color-accent-primary);
-  }
-  
-  .card-glass {
-    backdrop-filter: blur(8px);
-    border-radius: 1rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .light-mode .card-glass {
-    background-color: rgba(248, 250, 252, 0.5);
-    border: 1px solid rgba(226, 232, 240, 0.5);
-  }
-  
-  /* Badge Styles */
-  .badge-natural {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 9999px;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 500;
-    background-color: var(--color-accent-20);
-    color: var(--color-accent-primary);
-  }
-  
-  .badge-light {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 9999px;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 500;
-    background-color: var(--color-accent-10);
-    color: var(--color-accent-secondary);
-  }
-  
-  .badge-muted {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 9999px;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 500;
-    background-color: var(--color-accent-5);
-    color: var(--color-text-secondary);
-  }
-  
-  /* Section Styles */
+  /* Section */
   .section-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  
-  @media (min-width: 768px) {
-    .section-padding {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-    }
+    @apply py-16 md:py-24;
   }
   
   .section-title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-  }
-  
-  @media (min-width: 768px) {
-    .section-title {
-      font-size: 2.25rem;
-      line-height: 2.5rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .section-title {
-      font-size: 3rem;
-      line-height: 1;
-    }
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white;
   }
   
   .section-subtitle {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    color: var(--color-text-secondary);
-    margin-top: 1rem;
-    max-width: 48rem;
+    @apply text-lg md:text-xl text-slate-600 dark:text-slate-300 mt-4 max-w-3xl;
   }
   
-  @media (min-width: 768px) {
-    .section-subtitle {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
-    }
+  /* Buttons */
+  .btn-natural-primary {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-all duration-300 bg-emerald-600 hover:bg-emerald-700 text-white hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
   }
   
-  /* Product Card - FIXED: removed group utility */
-  .product-card-natural {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s;
-    background-color: var(--bg-card);
-    border: 1px solid var(--color-border);
+  .btn-natural-outline {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-300 dark:border-emerald-500 dark:text-emerald-500 dark:hover:bg-emerald-500;
   }
   
-  .product-card-natural:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    transform: translateY(-0.5rem);
-    border-color: var(--color-accent-primary);
+  .btn-natural-light {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-all duration-300 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30;
   }
   
-  /* Input Styles */
-  .input-natural {
-    width: 100%;
-    border-radius: 0.75rem;
-    border: 1px solid var(--color-border);
-    background-color: var(--bg-primary);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    color: var(--color-text-primary);
-    transition: all 0.3s;
+  /* Badge */
+  .badge-natural {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300;
   }
   
-  .input-natural:focus {
-    border-color: var(--color-accent-primary);
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-accent-20);
-  }
-  
-  .input-natural::placeholder {
-    color: var(--color-text-secondary);
-  }
-  
-  /* Navigation */
+  /* Nav Link */
   .nav-link-natural {
-    transition: color 0.3s;
-    color: var(--color-text-secondary);
+    @apply text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300;
   }
   
-  .nav-link-natural:hover {
-    color: var(--color-accent-primary);
+  /* Card */
+  .card-natural {
+    @apply rounded-2xl shadow-lg transition-all duration-500 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700;
+  }
+  
+  .card-natural-hover {
+    @apply card-natural hover:shadow-2xl hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500;
   }
 }
 
-/* ================================================== */
-/* ANIMATIONS */
-/* ================================================== */
-
-/* Herbal Gradient Animation */
-.bg-herbal-gradient {
-  background: linear-gradient(-45deg, var(--bg-secondary), var(--bg-primary), var(--color-accent-primary), var(--bg-primary));
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+@layer utilities {
+  /* Backgrounds */
+  .bg-natural-header {
+    @apply bg-white dark:bg-slate-800;
+  }
+  
+  .bg-natural-secondary {
+    @apply bg-slate-50 dark:bg-slate-900/50;
+  }
+  
+  /* Text colors */
+  .text-natural-primary {
+    @apply text-slate-900 dark:text-white;
+  }
+  
+  .text-natural-secondary {
+    @apply text-slate-600 dark:text-slate-300;
+  }
+  
+  .text-accent-primary {
+    @apply text-emerald-600 dark:text-emerald-500;
+  }
+  
+  /* Border colors */
+  .border-natural {
+    @apply border-slate-200 dark:border-slate-700;
+  }
+  
+  .border-accent {
+    @apply border-emerald-500;
+  }
+  
+  /* Hover backgrounds */
+  .hover\:bg-accent-10:hover {
+    @apply bg-emerald-50 dark:bg-emerald-900/10;
+  }
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Leaf Animation */
-@keyframes leaf-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
-}
-
-.leaf-float {
-  animation: leaf-float 4s ease-in-out infinite;
-}
-
-/* Fade In */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -464,90 +127,24 @@
   }
 }
 
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* ================================================== */
-/* SPECIAL EFFECTS */
-/* ================================================== */
-
-/* Herbal Gradient Text */
-.text-gradient-herbal {
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-light), var(--color-accent-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Natural Pattern Background */
-.bg-natural-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12-12-5.373-12-12zM12 12c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12-12-5.373-12-12zm12 10c5.523 0 10-4.477 10-10S29.523 2 24 2 14 6.477 14 12s4.477 10 10 10zm50 50c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Subtle Green Overlay */
-.bg-natural-overlay {
-  background: linear-gradient(135deg, 
-    var(--color-accent-5) 0%, 
-    transparent 50%, 
-    var(--color-accent-5) 100%
-  );
-}
-
-/* ================================================== */
-/* SCROLLBAR */
-/* ================================================== */
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  @apply bg-slate-100 dark:bg-slate-800;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent-primary);
-  border-radius: 4px;
+  @apply bg-emerald-500 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-secondary);
+  @apply bg-emerald-600;
 }
 
-/* ================================================== */
-/* SELECTION */
-/* ================================================== */
-
+/* Selection */
 ::selection {
-  background-color: var(--color-accent-primary);
-  color: white;
-}
-
-/* ================================================== */
-/* RESPONSIVE */
-/* ================================================== */
-
-@media (max-width: 640px) {
-  .section-padding {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  
-  .section-title {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-}
-
-/* ================================================== */
-/* SMOOTH TRANSITIONS */
-/* ================================================== */
-
-* {
-  transition: background-color 0.3s ease, 
-              border-color 0.3s ease, 
-              color 0.3s ease,
-              transform 0.3s ease,
-              box-shadow 0.3s ease;
+  @apply bg-emerald-500 text-white;
 }
