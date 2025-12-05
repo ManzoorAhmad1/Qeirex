@@ -1,10 +1,12 @@
-// src/components/FeaturedProducts.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingCart, Star, Heart, Eye, Filter } from 'lucide-react'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '@/store/store'
+import { addToCart, openCart } from '@/store/slices/cartSlice'
 
 const products = [
   {
@@ -112,6 +114,7 @@ interface FeaturedProductsProps {
 }
 
 export default function FeaturedProducts({ initialCategory = 'All' }: FeaturedProductsProps) {
+  const dispatch = useDispatch<AppDispatch>()
   const searchParams = useSearchParams()
   const urlCategory = searchParams.get('category')
   
@@ -150,6 +153,18 @@ export default function FeaturedProducts({ initialCategory = 'All' }: FeaturedPr
       default:
         return 'Discover our carefully crafted herbal blends across all categories'
     }
+  }
+
+  const handleAddToCart = (product: typeof products[0]) => {
+    dispatch(addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      description: product.description,
+      category: product.category
+    }))
+    dispatch(openCart())
   }
 
   return (
@@ -321,6 +336,7 @@ export default function FeaturedProducts({ initialCategory = 'All' }: FeaturedPr
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          onClick={() => handleAddToCart(product)}
                           className="btn-natural-light text-sm px-4 py-2"
                         >
                           <ShoppingCart className="w-4 h-4" />

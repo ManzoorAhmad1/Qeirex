@@ -1,90 +1,96 @@
-// src/components/ProductCard.tsx
 'use client'
 
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '@/store/store'
+import { addToCart, openCart } from '@/store/slices/cartSlice'
+import { ShoppingCart, Leaf } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Star } from 'lucide-react'
-import { useState } from 'react'
+import Image from 'next/image'
 
 interface ProductCardProps {
-  id: string
-  name: string
-  category: string
-  price: number
-  image: string
-  rating: number
+  product: {
+    id: string
+    name: string
+    price: number
+    image?: string
+    description?: string
+    category?: string
+  }
 }
 
-export default function ProductCard({ product }: { product: ProductCardProps }) {
-  const [isHovered, setIsHovered] = useState(false)
+const ProductCard = ({ product }: ProductCardProps) => {
+  const dispatch = useDispatch<AppDispatch>()
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      description: product.description,
+      category: product.category
+    }))
+    dispatch(openCart())
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="product-card-natural"
+      whileHover={{ y: -5 }}
+      className="bg-natural-primary rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       {/* Product Image */}
-      <div className="h-48 w-full bg-accent-5 flex items-center justify-center">
-        {/* Add your product image here */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-32 h-32 rounded-full bg-accent-10"></div>
-        </div>
+      <div className="h-48 bg-gradient-to-br from-accent-10 to-natural-secondary relative overflow-hidden">
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover hover:scale-110 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <Leaf className="w-16 h-16 text-accent-primary" />
+          </div>
+        )}
         
         {/* Category Badge */}
-        <div className="absolute top-3 left-3">
-          <span className="badge-natural">
+        {product.category && (
+          <span className="absolute top-3 left-3 bg-accent-primary/90 text-white px-3 py-1 rounded-full text-xs font-medium">
             {product.category}
           </span>
-        </div>
-
-        {/* Rating */}
-        <div className="absolute top-3 right-3 bg-accent-20 backdrop-blur-sm px-2 py-1 rounded-lg border border-accent-10">
-          <div className="flex items-center space-x-1">
-            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-            <span className="text-xs font-medium text-natural-primary">{product.rating}</span>
-          </div>
-        </div>
+        )}
       </div>
-
+      
       {/* Product Info */}
-      <div className="p-6 space-y-4">
-        <h3 className="font-semibold text-natural-primary line-clamp-1 hover:text-accent-primary transition-colors">
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-natural-primary mb-2">
           {product.name}
         </h3>
+        <p className="text-natural-secondary mb-4 line-clamp-2">
+          {product.description}
+        </p>
         
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-2xl font-bold text-natural-primary">
+            <span className="text-2xl font-bold text-accent-primary">
               ${product.price.toFixed(2)}
-            </p>
-            <p className="text-sm text-natural-secondary">per unit</p>
+            </span>
           </div>
-
+          
           <motion.button
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${
-              isHovered 
-                ? 'bg-accent-primary text-white' 
-                : 'bg-accent-10 text-natural-secondary'
-            }`}
+            onClick={handleAddToCart}
+            className="flex items-center gap-2 bg-accent-primary text-white px-4 py-2 rounded-lg hover:bg-accent-primary/90 transition-colors"
           >
-            <ShoppingCart className="w-5 h-5" />
+            <ShoppingCart className="w-4 h-4" />
+            Add to Cart
           </motion.button>
         </div>
-
-        {/* View Details Button */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
-          className="w-full py-2 text-sm font-medium text-accent-primary hover:text-accent-secondary transition-colors"
-        >
-          View Details →
-        </motion.button>
       </div>
     </motion.div>
   )
 }
+
+export default ProductCard

@@ -1,11 +1,13 @@
 // src/app/layout.tsx (Server Component)
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
-import { StoreProvider } from '@/providers/store-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import "./globals.css";
+import CartSidebar from '@/components/CartSidebar'
+import ToasterProvider from '@/providers/ToasterProvider'
+import { StoreProvider } from '@/providers/StoreProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,6 +30,9 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-grow">
                 {children}
+                <CartSidebar />
+                <ToasterProvider />
+
               </main>
               <Footer />
             </div>

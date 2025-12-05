@@ -1,25 +1,42 @@
-// src/components/Navbar.tsx (updated)
 'use client'
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCart, User, Search, Menu, X, Leaf } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { ShoppingCart, User, Menu, X, Leaf } from 'lucide-react'
 import { motion } from 'framer-motion'
-import ThemeToggle from './ThemeToggle' // Import the new component
+import ThemeToggle from './ThemeToggle'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '@/store/store'
+import { toggleCart, selectCartItemCount } from '@/store/slices/cartSlice'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const dispatch = useDispatch()
+  const cartItemCount = useSelector(selectCartItemCount)
+  const pathname = usePathname() // Get current path
 
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Shop', href: '/shop' },
     { name: 'Blog', href: '/blog' },
     { name: 'About', href: '/about' },
-    { name: 'Reviews', href: '/reviews' },
   ]
 
+  const handleCartClick = () => {
+    dispatch(toggleCart())
+  }
+
+  // Function to check if link is active
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return pathname === href
+    }
+    return pathname.startsWith(href)
+  }
+
   return (
-    <nav className="sticky top-0 z-50 bg-natural-header border-b border-natural">
+    <nav className="sticky top-0 z-40 bg-natural-header border-b border-natural">
       <div className="container-natural py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -39,16 +56,25 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="nav-link-natural relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-primary group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = isActiveLink(link.href)
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`nav-link-natural relative group ${
+                    isActive ? 'text-accent-primary font-semibold' : ''
+                  }`}
+                >
+                  {link.name}
+                  <span 
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-accent-primary transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </Link>
+              )
+            })}
           </div>
 
           {/* Right Section */}
@@ -56,22 +82,26 @@ export default function Navbar() {
             {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* Search */}
-            <button className="p-2 rounded-full hover:bg-accent-10 transition-colors">
-              <Search className="w-5 h-5 text-natural-secondary" />
-            </button>
-
-            {/* Cart */}
-            <button className="p-2 rounded-full hover:bg-accent-10 transition-colors relative">
+            {/* Cart with Redux */}
+            <button 
+              onClick={handleCartClick}
+              className="p-2 rounded-full hover:bg-accent-10 transition-colors relative"
+            >
               <ShoppingCart className="w-5 h-5 text-natural-secondary" />
-              <span className="absolute -top-1 -right-1 bg-accent-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                3
-              </span>
+              {cartItemCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-1 -right-1 bg-accent-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+                >
+                  {cartItemCount > 9 ? '9+' : cartItemCount}
+                </motion.span>
+              )}
             </button>
 
             {/* User */}
             <Link
-              href="/auth"
+              href="/auth/login"
               className="p-2 rounded-full hover:bg-accent-10 transition-colors"
             >
               <User className="w-5 h-5 text-natural-secondary" />
@@ -97,18 +127,25 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-4 pb-4 border-t border-natural pt-4"
+            className="md:hidden mt-4 pb-4 border-t border-natural pt-4 space-y-2"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="block py-2 nav-link-natural"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = isActiveLink(link.href)
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`block py-2 px-4 rounded-lg transition-colors ${
+                    isActive
+                      ? 'bg-accent-10 text-accent-primary font-semibold'
+                      : 'nav-link-natural hover:bg-accent-10'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
+            })}
           </motion.div>
         )}
       </div>

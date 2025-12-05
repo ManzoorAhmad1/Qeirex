@@ -148,3 +148,70 @@
 ::selection {
   @apply bg-emerald-500 text-white;
 }
+/* Add to src/app/globals.css */
+
+/* Cart Sidebar Dark Mode Support */
+.dark .cart-quantity-btn {
+  @apply border-slate-600 hover:bg-slate-800;
+}
+
+.dark .btn-checkout {
+  @apply bg-gray-800 hover:bg-gray-700;
+}
+
+.dark .btn-continue {
+  @apply border-gray-600 text-gray-300 hover:bg-gray-800;
+}
+
+.dark .badge-category {
+  @apply bg-emerald-900/30 text-emerald-300;
+}
+
+.dark .cart-price {
+  @apply text-white;
+}
+
+.dark .cart-price-unit {
+  @apply text-gray-400;
+}
+
+.dark .divider-dashed {
+  @apply border-slate-700;
+}
+
+.dark .divider-solid {
+  @apply border-slate-700;
+}
+
+/* Button styles for dark mode */
+.dark .btn-natural-primary {
+  @apply bg-emerald-600 hover:bg-emerald-700;
+}
+
+.dark .bg-natural-primary {
+  @apply bg-slate-900;
+}
+
+.dark .bg-natural-secondary {
+  @apply bg-slate-800/50;
+}
+
+.dark .border-natural {
+  @apply border-slate-700;
+}
+
+.dark .text-natural-primary {
+  @apply text-white;
+}
+
+.dark .text-natural-secondary {
+  @apply text-slate-300;
+}
+
+.dark .bg-accent-10 {
+  @apply bg-emerald-900/20;
+}
+
+.dark .text-accent-primary {
+  @apply text-emerald-400;
+}
