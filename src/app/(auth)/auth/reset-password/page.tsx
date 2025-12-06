@@ -52,7 +52,7 @@ function ResetPasswordForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-off-white)', minHeight: '100vh' }}>
       <div className="container-natural py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Form */}
@@ -64,7 +64,7 @@ function ResetPasswordForm() {
             {/* Logo */}
             <div className="text-center mb-8">
               <Link href="/" className="inline-flex items-center justify-center gap-3">
-                <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--color-sage-green)' }}>
                   <Leaf className="w-7 h-7 text-white" />
                 </div>
                 <span className="text-2xl font-bold text-natural-primary">
@@ -77,13 +77,13 @@ function ResetPasswordForm() {
             </div>
 
             {/* Form */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-natural p-8 shadow-xl">
+            <div className="bg-white rounded-2xl border border-natural p-8 shadow-xl" style={{ borderColor: 'rgba(230, 220, 197, 0.5)' }}>
               <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(230, 220, 197, 0.3)' }}>
                   {isSuccess ? (
-                    <Check className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                    <Check className="w-8 h-8" style={{ color: 'var(--color-sage-green)' }} />
                   ) : (
-                    <KeyRound className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                    <KeyRound className="w-8 h-8" style={{ color: 'var(--color-sage-green)' }} />
                   )}
                 </div>
                 
@@ -119,8 +119,9 @@ function ResetPasswordForm() {
                         className={`w-full pl-12 pr-12 py-3 rounded-xl border ${
                           errors.password 
                             ? 'border-rose-500 focus:ring-rose-500' 
-                            : 'border-natural focus:ring-emerald-500'
-                        } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none focus:ring-2`}
+                            : 'border-natural focus:ring-2'
+                        } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none`}
+                        style={!errors.password ? { '--tw-ring-color': 'var(--color-sage-green)' } as React.CSSProperties : {}}
                         {...register('password')}
                       />
                       <button
@@ -151,11 +152,11 @@ function ResetPasswordForm() {
                         ].map((req, index) => (
                           <div key={index} className="flex items-center text-sm">
                             <div className={`w-4 h-4 rounded-full mr-2 flex items-center justify-center ${
-                              req.condition ? 'bg-emerald-500' : 'bg-slate-200 dark:bg-slate-700'
+                              req.condition ? 'bg-accent' : 'bg-secondary'
                             }`}>
                               {req.condition && <Check className="w-3 h-3 text-white" />}
                             </div>
-                            <span className={req.condition ? 'text-emerald-600 dark:text-emerald-400' : 'text-natural-secondary'}>
+                            <span className={req.condition ? 'text-accent' : 'text-natural-secondary'}>
                               {req.text}
                             </span>
                           </div>
@@ -183,8 +184,9 @@ function ResetPasswordForm() {
                         className={`w-full pl-12 pr-12 py-3 rounded-xl border ${
                           errors.confirmPassword 
                             ? 'border-rose-500 focus:ring-rose-500' 
-                            : 'border-natural focus:ring-emerald-500'
-                        } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none focus:ring-2`}
+                            : 'border-natural focus:ring-2'
+                        } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none`}
+                        style={!errors.confirmPassword ? { '--tw-ring-color': 'var(--color-sage-green)' } as React.CSSProperties : {}}
                         {...register('confirmPassword')}
                       />
                       <button
@@ -210,7 +212,12 @@ function ResetPasswordForm() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    className="w-full text-white py-3 rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    style={{
+                      backgroundColor: 'var(--color-sage-green)',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-deep-herbal)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-sage-green)')}
                   >
                     {isLoading ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -238,13 +245,24 @@ function ResetPasswordForm() {
                   <div className="space-y-4">
                     <Link
                       href="/auth/login"
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors inline-block text-center"
+                      className="w-full text-white py-3 rounded-xl font-semibold transition-colors inline-block text-center"
+                      style={{
+                        backgroundColor: 'var(--color-sage-green)',
+                        display: 'block'
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-deep-herbal)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-sage-green)')}
                     >
                       Login Now
                     </Link>
                     <Link
                       href="/"
-                      className="w-full border border-natural text-natural-primary hover:border-emerald-500 py-3 rounded-xl font-medium transition-colors inline-block text-center"
+                      className="w-full border text-natural-primary py-3 rounded-xl font-medium transition-colors inline-block text-center"
+                      style={{
+                        borderColor: 'var(--color-sage-green)',
+                        color: 'var(--color-sage-green)',
+                        display: 'block'
+                      }}
                     >
                       Return Home
                     </Link>

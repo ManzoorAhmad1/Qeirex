@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-off-white)', minHeight: '100vh' }}>
       <div className="container-natural py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Form */}
@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
             {/* Logo */}
             <div className="text-center mb-8">
               <Link href="/" className="inline-flex items-center justify-center gap-3">
-                <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'var(--color-sage-green)' }}>
                   <Leaf className="w-7 h-7 text-white" />
                 </div>
                 <span className="text-2xl font-bold text-natural-primary">
@@ -68,7 +68,7 @@ export default function ForgotPasswordPage() {
             </div>
 
             {/* Form */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-natural p-8 shadow-xl">
+            <div className="bg-white rounded-2xl border border-natural p-8 shadow-xl" style={{ borderColor: 'rgba(230, 220, 197, 0.5)' }}>
               <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold text-natural-primary mb-2">
                   {emailSent ? 'Check Your Email' : 'Forgot Password?'}
@@ -102,8 +102,9 @@ export default function ForgotPasswordPage() {
                         className={`w-full pl-12 pr-4 py-3 rounded-xl border ${
                           errors.email 
                             ? 'border-rose-500 focus:ring-rose-500' 
-                            : 'border-natural focus:ring-emerald-500'
-                        } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none focus:ring-2`}
+                            : 'border-natural focus:ring-2'
+                        } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none`}
+                        style={!errors.email ? { '--tw-ring-color': 'var(--color-sage-green)' } as React.CSSProperties : {}}
                         {...register('email')}
                       />
                     </div>
@@ -118,7 +119,12 @@ export default function ForgotPasswordPage() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    className="w-full text-white py-3 rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    style={{
+                      backgroundColor: 'var(--color-sage-green)',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-deep-herbal)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-sage-green)')}
                   >
                     {isLoading ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -142,8 +148,8 @@ export default function ForgotPasswordPage() {
               ) : (
                 /* Success Message */
                 <div className="text-center space-y-6">
-                  <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto">
-                    <CheckCircle className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: 'rgba(230, 220, 197, 0.3)' }}>
+                    <CheckCircle className="w-8 h-8" style={{ color: 'var(--color-sage-green)' }} />
                   </div>
                   
                   <div className="space-y-4">
@@ -159,13 +165,20 @@ export default function ForgotPasswordPage() {
                   <div className="space-y-4">
                     <button
                       onClick={() => setEmailSent(false)}
-                      className="w-full text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
+                      className="w-full hover:underline font-medium"
+                      style={{ color: 'var(--color-sage-green)' }}
                     >
                       Resend email
                     </button>
                     <Link
                       href="/auth/login"
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors inline-block"
+                      className="w-full text-white py-3 rounded-xl font-semibold transition-colors inline-block"
+                      style={{
+                        backgroundColor: 'var(--color-sage-green)',
+                        display: 'block'
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-deep-herbal)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-sage-green)')}
                     >
                       Return to Login
                     </Link>

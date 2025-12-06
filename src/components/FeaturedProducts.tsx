@@ -167,6 +167,9 @@ interface FeaturedProductsProps {
     dispatch(openCart())
   }
 
+   const newLocal = <p className="section-subtitle text-center">
+     {getCategoryDescription(activeCategory)}
+   </p>
   return (
     <section className="section-padding bg-natural-primary">
       <div className="container-natural">
@@ -177,7 +180,7 @@ interface FeaturedProductsProps {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="badge-light mb-4">
+          <span className="badge-natural mb-4">
             <Star className="w-4 h-4 mr-2" />
             {activeCategory === 'All' ? 'Featured Products' : `${activeCategory} Collection`}
           </span>
@@ -188,9 +191,7 @@ interface FeaturedProductsProps {
               : `${activeCategory} Herbal Blends`}
           </h2>
           
-          <p className="section-subtitle">
-            {getCategoryDescription(activeCategory)}
-          </p>
+          <p className='w-full flex items-center justify-center'>{newLocal}</p>
         </motion.div>
 
         {/* Category Filter */}
@@ -201,8 +202,8 @@ interface FeaturedProductsProps {
           className="flex flex-wrap justify-center gap-2 mb-12"
         >
           <div className="flex items-center px-4 py-2 bg-natural-card rounded-full shadow-sm border border-natural mr-2">
-            <Filter className="w-4 h-4 text-natural-secondary mr-2" />
-            <span className="text-sm font-medium text-natural-secondary">
+            <Filter className="w-4 h-4 text-black mr-2" />
+            <span className="text-sm font-medium text-black">
               Filter:
             </span>
           </div>
@@ -216,7 +217,7 @@ interface FeaturedProductsProps {
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
                   ? 'btn-natural-primary'
-                  : 'bg-natural-card text-natural-secondary hover:bg-natural-secondary border border-natural'
+                  : 'bg-natural-card text-black hover:bg-natural-secondary border border-natural'
               }`}
             >
               {category === 'All' ? 'All Products' : category}
@@ -226,7 +227,7 @@ interface FeaturedProductsProps {
 
         {/* Products Count */}
         <div className="mb-8 text-center">
-          <p className="text-natural-secondary">
+          <p className="text-black font-medium">
             Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
             {activeCategory !== 'All' && ` in ${activeCategory}`}
           </p>
@@ -251,7 +252,7 @@ interface FeaturedProductsProps {
                   transition={{ delay: index * 0.1 }}
                   layout
                 >
-                  <div className="product-card-natural">
+                  <div className="product-card-natural rounded-[32px]" style={{ boxShadow: '0 20px 40px rgba(62, 107, 72, 0.12), 0 8px 16px rgba(62, 107, 72, 0.08)' }}>
                     {/* Product Image */}
                     <div className="h-64 w-full bg-accent-5 flex items-center justify-center">
                       <div className="w-40 h-40 rounded-full bg-accent-10 flex items-center justify-center">
@@ -319,7 +320,7 @@ interface FeaturedProductsProps {
                         {product.name}
                       </h3>
                       
-                      <p className="text-natural-secondary text-sm mb-4">
+                      <p className="text-black text-sm mb-4">
                         {product.description}
                       </p>
 
@@ -328,7 +329,7 @@ interface FeaturedProductsProps {
                           <p className="text-2xl font-bold text-natural-primary">
                             ${product.price.toFixed(2)}
                           </p>
-                          <p className="text-sm text-natural-secondary">
+                          <p className="text-sm text-black">
                             {product.inStock ? 'In Stock' : 'Out of Stock'}
                           </p>
                         </div>
@@ -379,9 +380,9 @@ interface FeaturedProductsProps {
 
 function LoadingFallback() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-50 to-white dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen flex items-center justify-center bg-natural-header">
       <div className="text-center">
-        <div className="w-16 h-16 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-natural-secondary">Loading...</p>
       </div>
     </div>

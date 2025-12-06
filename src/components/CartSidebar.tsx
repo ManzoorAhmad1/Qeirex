@@ -3,7 +3,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '@/store/store'
 import { closeCart, removeFromCart, updateQuantity } from '@/store/slices/cartSlice'
-import { X, Plus, Minus, ShoppingBag, Truck } from 'lucide-react'
+import { X, Plus, Minus, ShoppingBag, Truck, Leaf } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -60,22 +60,23 @@ const CartSidebar = () => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="fixed inset-y-0 right-0 w-full sm:w-[400px] bg-white z-50 flex flex-col shadow-2xl"
+            className="fixed inset-y-0 right-0 w-full sm:w-[400px] z-50 flex flex-col shadow-2xl"
+            style={{ backgroundColor: 'var(--color-off-white)' }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: 'rgba(123, 170, 127, 0.2)' }}>
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <ShoppingBag className="w-6 h-6 text-gray-800" />
+                  <ShoppingBag className="w-6 h-6" style={{ color: 'var(--color-deep-herbal)' }} />
                   {itemCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                    <span className="absolute -top-2 -right-2 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium" style={{ backgroundColor: 'var(--color-sage-green)' }}>
                       {itemCount}
                     </span>
                   )}
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">Shopping Cart</h2>
-                  <p className="text-sm text-gray-600">
+                  <h2 className="text-xl font-bold" style={{ color: 'var(--color-deep-herbal)' }}>Shopping Cart</h2>
+                  <p className="text-sm" style={{ color: 'var(--color-soft-grey)' }}>
                     {itemCount} {itemCount === 1 ? 'item' : 'items'}
                   </p>
                 </div>

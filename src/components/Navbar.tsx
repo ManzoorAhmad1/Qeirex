@@ -36,8 +36,14 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-40 bg-natural-header border-b border-natural">
-      <div className="container-natural py-3">
+    <nav
+      className="sticky top-0 z-40 border-b"
+      style={{
+        backgroundColor: 'var(--color-dark-bg)',
+        borderColor: 'transparent',
+      }}
+    >
+      <div className="container-natural py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
@@ -45,11 +51,12 @@ export default function Navbar() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-              className="w-10 h-10 bg-accent-primary rounded-lg flex items-center justify-center"
+              className="w-10 h-10 rounded-lg flex items-center justify-center"
+              style={{ backgroundColor: 'var(--color-sage-green)' }}
             >
               <Leaf className="w-6 h-6 text-white" />
             </motion.div>
-            <span className="text-xl font-bold text-natural-primary">
+            <span className="text-xl font-bold" style={{ color: 'var(--color-deep-herbal)' }}>
               Qeirex
             </span>
           </Link>
@@ -62,15 +69,18 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`nav-link-natural relative group ${
-                    isActive ? 'text-accent-primary font-semibold' : ''
-                  }`}
+                  className="nav-link relative group font-medium transition-colors duration-300"
+                  style={{
+                    color: isActive ? 'var(--color-sage-green)' : 'var(--color-soft-grey)',
+                  }}
                 >
                   {link.name}
-                  <span 
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-accent-primary transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
+                  <span
+                    className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300"
+                    style={{
+                      backgroundColor: 'var(--color-sage-green)',
+                      width: isActive ? '100%' : '0',
+                    }}
                   />
                 </Link>
               )
@@ -79,20 +89,27 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <ThemeToggle />
 
             {/* Cart with Redux */}
-            <button 
+            <button
               onClick={handleCartClick}
-              className="p-2 rounded-full hover:bg-accent-10 transition-colors relative"
+              className="p-2 rounded-full transition-colors relative"
+              style={{
+                color: 'black',
+                backgroundColor: 'rgba(230, 220, 197, 0.3)',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(123, 170, 127, 0.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(230, 220, 197, 0.3)'}
             >
-              <ShoppingCart className="w-5 h-5 text-natural-secondary" />
+              <ShoppingCart className="w-5 h-5 " style={{
+                color: 'var(--color-soft-grey)',
+              }} />
               {cartItemCount > 0 && (
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 bg-accent-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+                  className="absolute -top-1 -right-1  text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"
+                  style={{ backgroundColor: 'var(--color-sage-green)' }}
                 >
                   {cartItemCount > 9 ? '9+' : cartItemCount}
                 </motion.span>
@@ -102,20 +119,33 @@ export default function Navbar() {
             {/* User */}
             <Link
               href="/auth/login"
-              className="p-2 rounded-full hover:bg-accent-10 transition-colors"
+              className="p-2 rounded-full transition-colors"
+              style={{
+                color: 'black',
+                backgroundColor: 'rgba(230, 220, 197, 0.3)',
+              }}
+              onMouseEnter={(e: any) => e.style.backgroundColor = 'rgba(123, 170, 127, 0.1)'}
+              onMouseLeave={(e: any) => e.style.backgroundColor = 'rgba(230, 220, 197, 0.3)'}
             >
-              <User className="w-5 h-5 text-natural-secondary" />
+              <User className="w-5 h-5 " style={{
+                color: 'var(--color-soft-grey)',
+              }} />
             </Link>
 
             {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2"
+              style={{ color: 'var(--color-deep-herbal)' }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6 text-natural-primary" />
+                <X className="w-6 h-6 " style={{
+                  color: 'var(--color-soft-grey)',
+                }} />
               ) : (
-                <Menu className="w-6 h-6 text-natural-primary" />
+                <Menu className="w-6 h-6 " style={{
+                  color: 'var(--color-soft-grey)',
+                }} />
               )}
             </button>
           </div>
@@ -127,7 +157,8 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-4 pb-4 border-t border-natural pt-4 space-y-2"
+            className="md:hidden mt-4 pb-4 border-t pt-4 space-y-2"
+            style={{ borderColor: 'rgba(230, 220, 197, 0.3)' }}
           >
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href)
@@ -135,11 +166,11 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`block py-2 px-4 rounded-lg transition-colors ${
-                    isActive
-                      ? 'bg-accent-10 text-accent-primary font-semibold'
-                      : 'nav-link-natural hover:bg-accent-10'
-                  }`}
+                  className="block py-2 px-4 rounded-lg transition-colors font-medium"
+                  style={{
+                    color: isActive ? 'white' : 'var(--color-soft-grey)',
+                    backgroundColor: isActive ? 'var(--color-sage-green)' : 'transparent',
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}

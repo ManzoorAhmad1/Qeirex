@@ -1,13 +1,37 @@
-/* src/app/globals.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ===== ROOT CSS VARIABLES ===== */
+:root {
+  /* Primary Herbal Colors */
+  --color-sage-green: #7BAA7F;
+  --color-deep-herbal: #3E6B48;
+  
+  /* Secondary / Earthy Colors */
+  --color-warm-beige: #E6DCC5;
+  --color-clay-brown: #B59A7A;
+  
+  /* Neutral Colors */
+  --color-dark-bg: #121714;
+  --color-soft-grey: #A7B0A6;
+  --color-off-white: #F4F3ED;
+  
+  /* RGB variants for opacity */
+  --color-sage-green-rgb: 123, 170, 127;
+  --color-deep-herbal-rgb: 62, 107, 72;
+  --color-warm-beige-rgb: 230, 220, 197;
+  
+  /* Typography */
+  --font-heading: 'Manrope', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --letter-spacing-heading: 0.02em;
+}
+
 @layer base {
   * {
-    @apply border-border;
     box-sizing: border-box;
   }
   
@@ -16,106 +40,243 @@
   }
   
   body {
-    font-family: 'Inter', sans-serif;
-    @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300;
+    font-family: var(--font-body);
+    background-color: var(--color-off-white);
+    color: var(--color-dark-bg);
+    min-height: 100vh;
+    transition: colors 0.3s duration;
+  }
+
+  /* Single color scheme in use; no dark-mode overrides */
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: var(--letter-spacing-heading);
+    color: var(--color-deep-herbal);
+  }
+
+  /* Headings use primary color only (no dark-mode overrides) */
+
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+  h3 { font-size: 1.875rem; }
+  h4 { font-size: 1.5rem; }
+  h5 { font-size: 1.25rem; }
+  h6 { font-size: 1rem; }
+
+  p {
+    font-family: var(--font-body);
+    color: var(--color-soft-grey);
+    line-height: 1.6;
+  }
+
+  /* Paragraphs use the configured neutral color */
+
+  a {
+    color: var(--color-sage-green);
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: var(--color-deep-herbal);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid var(--color-sage-green);
+    outline-offset: 2px;
   }
 }
 
 @layer components {
+  /* Premium Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    background-color: var(--color-sage-green);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-deep-herbal);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: 2px solid var(--color-warm-beige);
+    color: var(--color-clay-brown);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-warm-beige);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* No dark-mode variants for secondary buttons; single scheme enforced */
+
   /* Container */
   .container-natural {
-    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 80rem;
   }
-  
-  /* Section */
+
+  /* Section Styling */
   .section-padding {
-    @apply py-16 md:py-24;
+    padding: 4rem 0;
   }
-  
+
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--color-deep-herbal);
+    letter-spacing: var(--letter-spacing-heading);
   }
-  
+
+  /* Section titles remain in primary deep-herbal color */
+
   .section-subtitle {
-    @apply text-lg md:text-xl text-slate-600 dark:text-slate-300 mt-4 max-w-3xl;
+    font-size: 1.125rem;
+    max-width: 48rem;
+    /* color: var(--color-soft-grey); */
+    color:black;
   }
-  
-  /* Buttons */
-  .btn-natural-primary {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-all duration-300 bg-emerald-600 hover:bg-emerald-700 text-white hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
+
+  /* Section subtitles remain in soft grey */
+
+  /* Premium Cards */
+  .card-premium {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(62, 107, 72, 0.08);
   }
-  
-  .btn-natural-outline {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-300 dark:border-emerald-500 dark:text-emerald-500 dark:hover:bg-emerald-500;
+
+  /* Card premium uses the light/background styles defined above (single scheme) */
+
+  .card-premium:hover {
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 12px 24px rgba(62, 107, 72, 0.12);
   }
-  
-  .btn-natural-light {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-all duration-300 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30;
-  }
-  
+
   /* Badge */
   .badge-natural {
-    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: rgba(123, 170, 127, 0.15);
+    color: var(--color-deep-herbal);
   }
-  
+
+  /* Badge uses single accent styling */
+
   /* Nav Link */
-  .nav-link-natural {
-    @apply text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300;
+  .nav-link {
+    font-size: 1rem;
+    transition: color 0.3s;
+    color: var(--color-soft-grey);
   }
-  
-  /* Card */
+
+  .nav-link:hover {
+    color: var(--color-sage-green);
+  }
+
+  /* Nav links maintain single color scheme */
+
+  /* Old classes for backward compatibility */
+  .btn-natural-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    background-color: var(--color-sage-green);
+    color: white;
+  }
+
+  .btn-natural-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: 2px solid var(--color-warm-beige);
+    color: var(--color-clay-brown);
+  }
+
   .card-natural {
-    @apply rounded-2xl shadow-lg transition-all duration-500 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700;
-  }
-  
-  .card-natural-hover {
-    @apply card-natural hover:shadow-2xl hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    background-color: white;
   }
 }
 
 @layer utilities {
-  /* Backgrounds */
-  .bg-natural-header {
-    @apply bg-white dark:bg-slate-800;
-  }
-  
-  .bg-natural-secondary {
-    @apply bg-slate-50 dark:bg-slate-900/50;
-  }
-  
-  /* Text colors */
-  .text-natural-primary {
-    @apply text-slate-900 dark:text-white;
-  }
-  
-  .text-natural-secondary {
-    @apply text-slate-600 dark:text-slate-300;
-  }
-  
-  .text-accent-primary {
-    @apply text-emerald-600 dark:text-emerald-500;
-  }
-  
-  /* Border colors */
-  .border-natural {
-    @apply border-slate-200 dark:border-slate-700;
-  }
-  
-  .border-accent {
-    @apply border-emerald-500;
-  }
-  
-  /* Hover backgrounds */
-  .hover\:bg-accent-10:hover {
-    @apply bg-emerald-50 dark:bg-emerald-900/10;
-  }
+  /* Text Colors */
+  .text-primary { color: var(--color-deep-herbal); }
+  .text-secondary { color: var(--color-soft-grey); }
+  .text-accent { color: var(--color-sage-green); }
+
+  /* Utilities use single color scheme (no dark mode overrides) */
+
+  /* Background Colors */
+  .bg-primary { background-color: var(--color-off-white); }
+  .bg-secondary { background-color: rgba(230, 220, 197, 0.3); }
+  .bg-accent { background-color: var(--color-sage-green); }
+  .bg-dark { background-color: var(--color-dark-bg); }
+
+  /* Background utilities remain as defined (single scheme) */
+
+  /* Border Colors */
+  .border-accent { border-color: var(--color-sage-green); }
+  .border-light { border-color: rgba(230, 220, 197, 0.5); }
+
+  /* Old utility classes */
+  .bg-natural-header { background-color: var(--color-off-white); }
+  .bg-natural-secondary { background-color: rgba(230, 220, 197, 0.3); }
+  .text-natural-primary { color: var(--color-deep-herbal); }
+  /* .text-natural-secondary { color: var(--color-soft-grey); } */
+  .text-natural-secondary { color: black; }
+  .text-accent-primary { color: var(--color-sage-green); }
+  .border-natural { border-color: rgba(230, 220, 197, 0.5); }
+  .nav-link-natural { color: var(--color-soft-grey); }
 }
 
-/* Animation classes */
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
+/* ===== PREMIUM ANIMATIONS ===== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -127,91 +288,113 @@
   }
 }
 
-/* Scrollbar */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes leafFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-leaf-float {
+  animation: leafFloat 4s ease-in-out infinite;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100 dark:bg-slate-800;
+  background-color: rgba(230, 220, 197, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-emerald-500 rounded-full;
+  background-color: var(--color-sage-green);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-emerald-600;
+  background-color: var(--color-deep-herbal);
 }
+
+  /* No dark-mode scrollbar variant needed */
 
 /* Selection */
 ::selection {
-  @apply bg-emerald-500 text-white;
-}
-/* Add to src/app/globals.css */
-
-/* Cart Sidebar Dark Mode Support */
-.dark .cart-quantity-btn {
-  @apply border-slate-600 hover:bg-slate-800;
+  background-color: var(--color-sage-green);
+  color: white;
 }
 
-.dark .btn-checkout {
-  @apply bg-gray-800 hover:bg-gray-700;
+/* ===== RESPONSIVE TYPOGRAPHY ===== */
+@media (max-width: 640px) {
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  
+  .section-padding {
+    padding: 3rem 0;
+  }
 }
 
-.dark .btn-continue {
-  @apply border-gray-600 text-gray-300 hover:bg-gray-800;
-}
-
-.dark .badge-category {
-  @apply bg-emerald-900/30 text-emerald-300;
-}
-
-.dark .cart-price {
-  @apply text-white;
-}
-
-.dark .cart-price-unit {
-  @apply text-gray-400;
-}
-
-.dark .divider-dashed {
-  @apply border-slate-700;
-}
-
-.dark .divider-solid {
-  @apply border-slate-700;
-}
-
-/* Button styles for dark mode */
-.dark .btn-natural-primary {
-  @apply bg-emerald-600 hover:bg-emerald-700;
-}
-
-.dark .bg-natural-primary {
-  @apply bg-slate-900;
-}
-
-.dark .bg-natural-secondary {
-  @apply bg-slate-800/50;
-}
-
-.dark .border-natural {
-  @apply border-slate-700;
-}
-
-.dark .text-natural-primary {
-  @apply text-white;
-}
-
-.dark .text-natural-secondary {
-  @apply text-slate-300;
-}
-
-.dark .bg-accent-10 {
-  @apply bg-emerald-900/20;
-}
-
-.dark .text-accent-primary {
-  @apply text-emerald-400;
-}
+/* ===== DARK MODE SUPPORT ===== */
+  /* Removed dark-mode root. App uses single provided color scheme. */

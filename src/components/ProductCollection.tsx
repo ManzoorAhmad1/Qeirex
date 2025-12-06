@@ -133,7 +133,7 @@ export default function ProductCollection() {
                   
                   {/* Product Badge */}
                   <div className="absolute top-6 left-6">
-                    <div className={`bg-gradient-to-br ${product.color} w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg`}>
+                    <div className="bg-accent w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg">
                       <product.icon className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -145,7 +145,7 @@ export default function ProductCollection() {
                         <h3 className="text-2xl font-bold text-white mb-2">
                           {product.name}
                         </h3>
-                        <p className="text-emerald-100 font-medium">
+                        <p className="text-white/80 font-medium">
                           {product.tagline}
                         </p>
                       </div>
@@ -158,8 +158,8 @@ export default function ProductCollection() {
                 </div>
                 
                 {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full opacity-10 blur-xl" />
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-amber-500 rounded-full opacity-10 blur-xl" />
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent rounded-full opacity-10 blur-xl" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-warm-beige rounded-full opacity-10 blur-xl" />
               </div>
 
               {/* Content Column */}
@@ -175,7 +175,7 @@ export default function ProductCollection() {
                   {product.name}
                 </h3>
                 
-                <p className="text-lg text-natural-secondary mb-8 leading-relaxed">
+                <p className="text-lg text-black mb-8 leading-relaxed">
                   {product.description}
                 </p>
 
@@ -188,7 +188,7 @@ export default function ProductCollection() {
                   <ul className="space-y-3">
                     {product.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-accent mr-3 mt-0.5 flex-shrink-0" />
                         <span className="text-natural-secondary">{benefit}</span>
                       </li>
                     ))}
@@ -201,7 +201,7 @@ export default function ProductCollection() {
                     <div className="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
                     How to Use for Best Results
                   </h4>
-                  <p className="text-natural-secondary">
+                  <p className="text-black">
                     {product.usage}
                   </p>
                 </div>
@@ -212,7 +212,7 @@ export default function ProductCollection() {
                   {product.bestFor.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-4 py-2 rounded-full bg-accent-5 text-accent-primary text-sm font-medium border border-accent-10"
+                      className="px-4 py-2 rounded-full bg-secondary text-accent text-sm font-medium border border-light"
                     >
                       {tag}
                     </span>

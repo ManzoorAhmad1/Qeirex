@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <CategorySection />
+      {/* <CategorySection /> */}
       <FeaturedProducts />
       <WhyChooseUs />
     </>

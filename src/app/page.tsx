@@ -14,7 +14,7 @@ export default function HomePage() {
       transition={{ duration: 0.5 }}
     >
       <HeroSection />
-      <CategorySection />
+      {/* <CategorySection /> */}
       <WhyChooseUs />
     </motion.div>
   )

@@ -58,7 +58,7 @@ const stats = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-padding bg-natural-secondary">
+    <section className="section-padding" style={{ backgroundColor: 'var(--color-off-white)' }}>
       <div className="container-natural">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -68,22 +68,22 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="badge-light mb-6">
+            <span className="badge-natural mb-6" style={{ backgroundColor: 'var(--color-sage-green)', color: 'white' }}>
               <Award className="w-4 h-4 mr-2" />
               Why Choose Qeirex
             </span>
             
-            <h2 className="section-title mb-6">
+            <h2 className="section-title mb-6" style={{ color: 'var(--color-deep-herbal)' }}>
               Herbal Excellence Rooted in Nature
             </h2>
             
-            <p className="text-lg text-natural-secondary mb-8">
+            <p className="text-lg mb-8 text-black" >
               Not everyone smokes to get high. Not everyone smokes to quit, some just 
               want to feel good without the damage. Qeirex is for those people, for 
               the chillers, the creatives, the deep thinkers, the mindful rollers.
             </p>
             
-            <p className="text-lg text-natural-secondary mb-10">
+            <p className="text-lg mb-10" style={{ color: 'black' }}>
               For anyone who wants to light up something that feels light on their 
               body & right for their vibes.
             </p>
@@ -104,10 +104,10 @@ export default function WhyChooseUs() {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-center"
                 >
-                  <div className="w-8 h-8 rounded-full bg-accent-20 flex items-center justify-center mr-3">
-                    <Check className="w-4 h-4 text-accent-primary" />
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: 'var(--color-sage-green)' }}>
+                    <Check className="w-4 h-4" style={{ color: 'white' }} />
                   </div>
-                  <span className="text-natural-primary">{item}</span>
+                  <span style={{ color: 'var(--color-deep-herbal)' }}>{item}</span>
                 </motion.li>
               ))}
             </ul>
@@ -121,10 +121,10 @@ export default function WhyChooseUs() {
             >
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-accent-primary mb-2">
+                  <div className="text-3xl font-bold mb-2" style={{ color: 'var(--color-sage-green)' }}>
                     {stat.number}
                   </div>
-                  <div className="text-sm text-natural-secondary">
+                  <div className="text-sm" style={{ color: 'black' }}>
                     {stat.label}
                   </div>
                 </div>
@@ -148,18 +148,18 @@ export default function WhyChooseUs() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="card-natural-hover p-6"
+                className="card-premium p-6"
+                style={{ backgroundColor: 'var(--color-warm-beige)' }}
               >
                 <div className="flex items-start space-x-4">
-                  <div className={`${feature.bgColor} p-3 rounded-xl`}>
-                    <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                  <div className="p-3 rounded-xl" style={{ backgroundColor: 'var(--color-sage-green)' }}>
+                    <feature.icon className="w-6 h-6" style={{ color: 'white' }} />
                   </div>
-                  
                   <div>
-                    <h3 className={`text-lg font-semibold ${feature.color} mb-2`}>
+                    <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--color-deep-herbal)' }}>
                       {feature.title}
                     </h3>
-                    <p className="text-natural-secondary text-sm">
+                    <p className="text-sm" style={{ color: 'black' }}>
                       {feature.description}
                     </p>
                   </div>
@@ -177,29 +177,28 @@ export default function WhyChooseUs() {
           transition={{ delay: 0.3 }}
           className="mt-20 text-center"
         >
-          <div className="bg-accent-10 rounded-3xl p-8 md:p-12 border border-accent">
-            <h3 className="text-2xl md:text-3xl font-bold text-natural-primary mb-4">
+          <div className="rounded-3xl p-8 md:p-12 border" style={{ backgroundColor: 'var(--color-warm-beige)', borderColor: 'var(--color-sage-green)' }}>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: 'var(--color-deep-herbal)' }}>
               Ready to Experience Herbal Excellence?
             </h3>
-            
-            <p className="text-natural-secondary mb-8 max-w-2xl mx-auto">
+            <p className="mb-8 max-w-2xl mx-auto" style={{ color: 'black' }}>
               Join thousands of satisfied customers who have chosen a healthier, 
               more conscious path with Qeirex.
             </p>
-            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-natural-primary px-8 py-3"
+                className="btn-primary px-8 py-3"
+                style={{ backgroundColor: 'var(--color-sage-green)', color: 'white' }}
               >
                 Shop Now
               </motion.button>
-              
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-natural-outline px-8 py-3"
+                className="btn-secondary px-8 py-3"
+                style={{ borderColor: 'var(--color-sage-green)', color: 'var(--color-deep-herbal)' }}
               >
                 Learn More About Us
               </motion.button>

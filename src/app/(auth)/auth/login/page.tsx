@@ -63,7 +63,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white dark:from-slate-900 dark:to-slate-800">
+    <div style={{ backgroundColor: 'var(--color-off-white)', minHeight: '100vh' }}>
       <div className="container-natural py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Form */}
@@ -75,7 +75,7 @@ export default function LoginPage() {
             {/* Logo */}
             <div className="text-center mb-8">
               <Link href="/" className="inline-flex items-center justify-center gap-3">
-                <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center">
+                <div style={{ backgroundColor: 'var(--color-sage-green)' }} className="w-12 h-12 rounded-xl flex items-center justify-center">
                   <Leaf className="w-7 h-7 text-white" />
                 </div>
                 <span className="text-2xl font-bold text-natural-primary">
@@ -88,7 +88,7 @@ export default function LoginPage() {
             </div>
 
             {/* Form */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-natural p-8 shadow-xl">
+            <div className="bg-white rounded-2xl border border-natural p-8 shadow-xl" style={{ borderColor: 'rgba(230, 220, 197, 0.5)' }}>
               <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold text-natural-primary mb-2">
                   Welcome Back
@@ -119,7 +119,7 @@ export default function LoginPage() {
                         className={`w-full pl-12 pr-4 py-3 rounded-xl border ${
                           errors.email 
                             ? 'border-rose-500 focus:ring-rose-500' 
-                            : 'border-natural focus:ring-emerald-500'
+                            : 'border-natural focus:ring-sage-green'
                         } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none focus:ring-2`}
                         {...register('email')}
                       />
@@ -139,7 +139,8 @@ export default function LoginPage() {
                       </label>
                       <Link
                         href="/auth/forgot-password"
-                        className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline"
+                        className="text-sm hover:underline"
+                        style={{ color: 'var(--color-sage-green)' }}
                       >
                         Forgot password?
                       </Link>
@@ -158,7 +159,7 @@ export default function LoginPage() {
                         className={`w-full pl-12 pr-12 py-3 rounded-xl border ${
                           errors.password 
                             ? 'border-rose-500 focus:ring-rose-500' 
-                            : 'border-natural focus:ring-emerald-500'
+                            : 'border-natural focus:ring-sage-green'
                         } bg-transparent text-natural-primary placeholder:text-natural-secondary focus:outline-none focus:ring-2`}
                         {...register('password')}
                       />
@@ -186,7 +187,8 @@ export default function LoginPage() {
                     <input
                       type="checkbox"
                       id="rememberMe"
-                      className="w-4 h-4 text-emerald-600 rounded border-natural focus:ring-emerald-500"
+                      className="w-4 h-4 rounded border-natural focus:ring-sage-green"
+                      style={{ accentColor: 'var(--color-sage-green)' }}
                       {...register('rememberMe')}
                     />
                     <label htmlFor="rememberMe" className="ml-2 text-natural-secondary text-sm">
@@ -198,7 +200,12 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    className="w-full text-white py-3 rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    style={{ 
+                      backgroundColor: 'var(--color-sage-green)',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-deep-herbal)'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-sage-green)'}
                   >
                     {isLoading ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -226,7 +233,8 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowOtp(true)}
-                    className="w-full border border-natural hover:border-emerald-500 text-natural-primary py-3 rounded-xl font-medium transition-colors flex items-center justify-center"
+                    className="w-full border text-natural-primary py-3 rounded-xl font-medium transition-colors flex items-center justify-center"
+                    style={{ borderColor: 'rgba(230, 220, 197, 0.5)' }}
                   >
                     <Smartphone className="w-5 h-5 mr-2" />
                     Login with OTP
@@ -272,14 +280,19 @@ export default function LoginPage() {
                   <div className="text-center">
                     <p className="text-natural-secondary">
                       Didn't receive code?{' '}
-                      <button className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium">
+                      <button className="hover:underline font-medium" style={{ color: 'var(--color-sage-green)' }}>
                         Resend OTP
                       </button>
                     </p>
                   </div>
 
                   {/* Verify Button */}
-                  <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition-colors">
+                  <button 
+                    className="w-full text-white py-3 rounded-xl font-semibold transition-colors"
+                    style={{ backgroundColor: 'var(--color-sage-green)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-deep-herbal)'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-sage-green)'}
+                  >
                     Verify OTP
                   </button>
 
@@ -299,7 +312,8 @@ export default function LoginPage() {
                   Don't have an account?{' '}
                   <Link
                     href="/auth/signup"
-                    className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium"
+                    className="hover:underline font-medium"
+                    style={{ color: 'var(--color-sage-green)' }}
                   >
                     Sign up now
                   </Link>
@@ -329,12 +343,12 @@ export default function LoginPage() {
               </div>
               
               {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-emerald-500 rounded-full opacity-10 blur-xl" />
-              <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-amber-500 rounded-full opacity-10 blur-xl" />
+              <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full opacity-10 blur-xl" style={{ backgroundColor: 'var(--color-sage-green)' }} />
+              <div className="absolute -bottom-6 -left-6 w-40 h-40 rounded-full opacity-10 blur-xl" style={{ backgroundColor: 'var(--color-warm-beige)' }} />
               
               {/* Feature Cards */}
               <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-11/12">
-                <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-2xl p-6 border border-natural shadow-xl">
+                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-natural shadow-xl" style={{ borderColor: 'rgba(230, 220, 197, 0.5)' }}>
                   <div className="grid grid-cols-3 gap-4">
                     {[
                       { icon: '🔐', label: 'Secure Login' },
